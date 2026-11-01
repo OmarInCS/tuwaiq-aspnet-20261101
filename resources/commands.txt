@@ -8,6 +8,8 @@ dotnet package add Microsoft.EntityFrameworkCore.Sqlite
 
 dotnet package add Microsoft.EntityFrameworkCore.Tools      
 
+dotnet tool install --global dotnet-ef
+
 dotnet ef dbcontext scaffold "Data Source=D:\hr_sqlite.db" Microsoft.EntityFrameworkCore.Sqlite --output-dir HrModels
 
 ------------------
