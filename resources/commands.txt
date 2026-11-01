@@ -1,0 +1,19 @@
+
+
+dotnet new sln -n AspNet20261101
+
+dotnet new console -o EFCore 
+
+dotnet package add Microsoft.EntityFrameworkCore.Sqlite
+
+dotnet package add Microsoft.EntityFrameworkCore.Tools      
+
+dotnet ef dbcontext scaffold "Data Source=D:\hr_sqlite.db" Microsoft.EntityFrameworkCore.Sqlite --output-dir HrModels
+
+------------------
+
+https://www.figma.com/design/ktNVjDLzCDrEcybokU0sX4/Demo-Project?node-id=0-1&p=f&t=LWuyPbzTWlDh1QjL-0
+
+------------------
+
+omarincs@gmail.com
