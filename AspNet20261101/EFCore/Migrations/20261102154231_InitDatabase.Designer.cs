@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EFCore.Migrations
 {
     [DbContext(typeof(ClinicContext))]
-    [Migration("20261101182656_InitDatabase")]
+    [Migration("20261102154231_InitDatabase")]
     partial class InitDatabase
     {
         /// <inheritdoc />

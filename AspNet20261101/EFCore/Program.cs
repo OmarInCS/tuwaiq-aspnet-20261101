@@ -12,18 +12,17 @@ var numOfDepts = hrDB.Departments.Count();
 System.Console.WriteLine($"Number of Emps: {numOfEmps}");
 System.Console.WriteLine($"Number of Depts: {numOfDepts}");
 
+var clinicDB = new ClinicContext();
+
 var doc = new Doctor
 {
     Name = "Wael",
     Salary = 20000,
-    HireDate = DateTime.Now
+    HireDate = DateTime.Today
 };
 
-var clinicDB = new ClinicContext();
+var spec = clinicDB.Specialities.Single(s => s.Name == "ENT");
+doc.Speciality = spec;
 
 clinicDB.Doctors.Add(doc);
 clinicDB.SaveChanges();
-
-var numOfDocs = clinicDB.Doctors.Count();
-
-System.Console.WriteLine($"Number of Docs: {numOfDocs}");

@@ -24,18 +24,74 @@ namespace EFCore.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("HireDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT")
+                        .HasDefaultValueSql("date('now', 'localtime')");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(150)
                         .HasColumnType("TEXT");
+
+                    b.Property<double>("Salary")
+                        .HasPrecision(8, 2)
+                        .HasColumnType("REAL");
+
+                    b.Property<int?>("SpecialityCode")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SpecialityCode");
+
+                    b.ToTable("Doctors");
+                });
+
+            modelBuilder.Entity("EFCore.ClinicModels.Speciality", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<double>("Salary")
-                        .HasColumnType("REAL");
-
                     b.HasKey("Id");
 
-                    b.ToTable("Doctors");
+                    b.ToTable("Specialities");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "ENT"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Surgery"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Pediatric"
+                        });
+                });
+
+            modelBuilder.Entity("EFCore.ClinicModels.Doctor", b =>
+                {
+                    b.HasOne("EFCore.ClinicModels.Speciality", "Speciality")
+                        .WithMany("Doctors")
+                        .HasForeignKey("SpecialityCode")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("Speciality");
+                });
+
+            modelBuilder.Entity("EFCore.ClinicModels.Speciality", b =>
+                {
+                    b.Navigation("Doctors");
                 });
 #pragma warning restore 612, 618
         }
