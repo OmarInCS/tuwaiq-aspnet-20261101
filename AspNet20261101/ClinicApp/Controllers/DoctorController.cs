@@ -11,5 +11,11 @@ namespace ClinicApp.Controllers
             return View(Data.Doctors);
         }
 
+        public ActionResult Details(int id)
+        {
+            var doc = Data.Doctors.Single(d => d.Id == id);
+            return View(doc);
+        }
+
     }
 }
