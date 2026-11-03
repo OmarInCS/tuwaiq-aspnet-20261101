@@ -1,0 +1,16 @@
+﻿@model List<Doctor>
+
+@{
+    ViewData["Title"] = "Doctors";
+}
+
+<h3>Doctors @Model.Count</h3>
+
+<ol>
+    @foreach (var d in Model)
+    {
+        <li>
+            @d.Name
+        </li>
+    }
+</ol>
