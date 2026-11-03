@@ -10,6 +10,8 @@ public class ClinicContext : DbContext
 
     public DbSet<Speciality> Specialities { get; set; }
 
+    public DbSet<Appointment> Appointments { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         base.OnConfiguring(optionsBuilder);
@@ -38,5 +40,10 @@ public class ClinicContext : DbContext
                         new Speciality { Id = 2, Name = "Surgery"},
                         new Speciality { Id = 3, Name = "Pediatric"},
                     ]);
+
+        // modelBuilder.Entity<Doctor>()
+        //             .HasMany(d => d.Appointments)
+        //             .WithOne(a => a.Doctor)
+        //             .HasForeignKey(a => a.DoctorId);
     }
 }

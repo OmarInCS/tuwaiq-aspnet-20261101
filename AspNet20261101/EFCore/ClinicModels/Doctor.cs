@@ -21,4 +21,6 @@ public class Doctor
 
     [ForeignKey(nameof(SpecialityCode))]
     public Speciality? Speciality { get; set; }
+
+    public List<Appointment> Appointments { get; set; } = new();
 }

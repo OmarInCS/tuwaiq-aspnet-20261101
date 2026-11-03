@@ -17,6 +17,29 @@ namespace EFCore.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "10.0.14");
 
+            modelBuilder.Entity("EFCore.ClinicModels.Appointment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("AllocationDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("DoctorId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("PatientName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DoctorId");
+
+                    b.ToTable("Appointments");
+                });
+
             modelBuilder.Entity("EFCore.ClinicModels.Doctor", b =>
                 {
                     b.Property<int>("Id")
@@ -79,6 +102,17 @@ namespace EFCore.Migrations
                         });
                 });
 
+            modelBuilder.Entity("EFCore.ClinicModels.Appointment", b =>
+                {
+                    b.HasOne("EFCore.ClinicModels.Doctor", "Doctor")
+                        .WithMany("Appointments")
+                        .HasForeignKey("DoctorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Doctor");
+                });
+
             modelBuilder.Entity("EFCore.ClinicModels.Doctor", b =>
                 {
                     b.HasOne("EFCore.ClinicModels.Speciality", "Speciality")
@@ -87,6 +121,11 @@ namespace EFCore.Migrations
                         .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Speciality");
+                });
+
+            modelBuilder.Entity("EFCore.ClinicModels.Doctor", b =>
+                {
+                    b.Navigation("Appointments");
                 });
 
             modelBuilder.Entity("EFCore.ClinicModels.Speciality", b =>
