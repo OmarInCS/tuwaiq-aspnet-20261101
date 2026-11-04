@@ -42,7 +42,7 @@ namespace ClinicApp.Controllers
             var doc = Data.Doctors.Single(d => d.Id == id);
             Data.Doctors.Remove(doc);
 
-            return RedirectToAction(nameof(Index));
+            return NoContent();
         }
     }
 }
