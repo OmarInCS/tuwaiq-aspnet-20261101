@@ -26,10 +26,23 @@ namespace ClinicApp.Controllers
         [HttpPost]
         public ActionResult Create(Doctor input)
         {
+
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
             input.Id = Data.Doctors.Max(d => d.Id) + 1;
             Data.Doctors.Add(input);
             return RedirectToAction(nameof(Index));
         }
 
+        public ActionResult Delete(int id)
+        {
+            var doc = Data.Doctors.Single(d => d.Id == id);
+            Data.Doctors.Remove(doc);
+
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

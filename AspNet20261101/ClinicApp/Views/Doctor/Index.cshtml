@@ -4,16 +4,33 @@
     ViewData["Title"] = "Doctors";
 }
 
-<h3>Doctors @Model.Count</h3>
-<a class="btn btn-primary" asp-action="Create">Create New</a>
+<div class="d-flex justify-content-between mb-3">
+    <h3>Doctors @Model.Count</h3>
+    <a class="btn btn-primary" asp-action="Create">Create New</a>
+</div>
 
-<ol>
+<table class="table table-bordered">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Hire Date</th>
+        <th></th>
+    </tr>
     @foreach (var d in Model)
     {
-        <li>
-            <a asp-controller="Doctor" asp-action="Details" asp-route-id="@d.Id">
-                @d.Name
-            </a>
-        </li>
+        <tr>
+            <td>@d.Id</td>
+            <td>
+                <a asp-controller="Doctor" asp-action="Details" asp-route-id="@d.Id">
+                    @d.Name
+                </a>
+            </td>
+            <td>
+                @d.HireDate.ToShortDateString()
+            </td>
+            <td>
+                <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@d.Id">Delete</a>
+            </td>
+        </tr>
     }
-</ol>
+</table>
