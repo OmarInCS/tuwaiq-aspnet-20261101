@@ -15,6 +15,7 @@ public class Doctor
     // [Precision(8, 2)] 
     public double Salary { get; set; }
 
+    [Display(Name = "Hire Date")]
     public DateTime HireDate { get; set; }
 
     public int? SpecialityCode { get; set; }

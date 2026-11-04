@@ -1,0 +1,23 @@
+﻿@model Doctor
+
+@{
+    ViewData["Title"] = "Create Doctor";
+}
+
+<h3>Create Doctor</h3>
+
+<form method="post">
+    <div class="form-floating mb-3">
+        <input class="form-control" asp-for="Name">
+        <label asp-for="Name"></label>
+    </div>
+    <div class="form-floating  mb-3">
+        <input class="form-control" asp-for="Salary">
+        <label asp-for="Salary"></label>
+    </div>
+    <div class="form-floating  mb-3">
+        <input type="date" class="form-control" asp-for="HireDate">
+        <label asp-for="HireDate"></label>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>

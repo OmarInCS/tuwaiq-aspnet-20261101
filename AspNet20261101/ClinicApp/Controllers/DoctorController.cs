@@ -17,5 +17,19 @@ namespace ClinicApp.Controllers
             return View(doc);
         }
 
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        public ActionResult Create(Doctor input)
+        {
+            input.Id = Data.Doctors.Max(d => d.Id) + 1;
+            Data.Doctors.Add(input);
+            return RedirectToAction(nameof(Index));
+        }
+
     }
 }
