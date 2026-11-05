@@ -47,5 +47,28 @@ namespace ClinicApp.Controllers
 
             return NoContent();
         }
+
+        public ActionResult Update(int id)
+        {
+            var doc = Data.Doctors.Single(d => d.Id == id).ToUpdateVM();
+            return View(doc);
+        }
+
+
+        [HttpPost]
+        public ActionResult Update(int id, DoctorUpdateVM input)
+        {
+
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
+
+            var doc = Data.Doctors.Single(d => d.Id == id);
+            input.ToModel(doc);
+            
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

@@ -29,6 +29,9 @@
                 @d.FormattedHireDate
             </td>
             <td>
+                <a class="btn btn-sm btn-secondary" asp-action="Update" asp-route-id="@d.Id">
+                    Update
+                </a>
                 <a class="btn btn-sm btn-danger btn-js-delete" data-id="@d.Id">
                     Delete
                 </a>

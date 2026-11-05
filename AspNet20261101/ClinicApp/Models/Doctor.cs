@@ -36,4 +36,14 @@ public class Doctor
             HireDate = HireDate
         };
     }
+
+    public DoctorUpdateVM ToUpdateVM()
+    {
+        return new DoctorUpdateVM
+        {
+            Name = Name,
+            Salary = Salary,
+            HireDate = HireDate
+        };
+    }
 }

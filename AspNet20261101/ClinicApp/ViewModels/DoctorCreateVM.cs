@@ -7,7 +7,7 @@ namespace ClinicApp.ViewModels;
 
 public class DoctorCreateVM
 {
-    [RegularExpression("[a-zA-Z]{3,150}", ErrorMessage = "Name must be 3-150 letters")]
+    [RegularExpression("[a-zA-Z\\s]{3,150}", ErrorMessage = "Name must be 3-150 letters")]
     public string Name { get; set; } = null!;
 
     [Range(1000, 100_000)]
