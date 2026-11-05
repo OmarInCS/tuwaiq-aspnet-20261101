@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using ClinicApp.Models;
+using ClinicApp.ViewModels;
 
 namespace ClinicApp.Controllers;
 

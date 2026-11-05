@@ -1,4 +1,4 @@
-﻿@model Doctor
+﻿@model DoctorReadVM
 
 @{
     ViewData["Title"] = "Doctor Details";
@@ -7,5 +7,6 @@
 <h3>Doctor #@Model.Id</h3>
 
 <h4>Name: @Model.Name</h4>
-<h4>Hire Date: @Model.HireDate.ToShortDateString()</h4>
+<h4>Hire Date: @Model.FormattedHireDate</h4>
+<h4>Years in Service: @Model.YearsInService</h4>
 <h4>Salary: @Model.Salary</h4>

@@ -1,4 +1,5 @@
 using ClinicApp.Models;
+using ClinicApp.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ClinicApp.Controllers
@@ -8,12 +9,13 @@ namespace ClinicApp.Controllers
         // GET: DoctorController
         public ActionResult Index()
         {
-            return View(Data.Doctors);
+            var doctors = Data.Doctors.Select(d => d.ToReadVM()).ToList();
+            return View(doctors);
         }
 
         public ActionResult Details(int id)
         {
-            var doc = Data.Doctors.Single(d => d.Id == id);
+            var doc = Data.Doctors.Single(d => d.Id == id).ToReadVM();
             return View(doc);
         }
 
@@ -24,7 +26,7 @@ namespace ClinicApp.Controllers
 
 
         [HttpPost]
-        public ActionResult Create(Doctor input)
+        public ActionResult Create(DoctorCreateVM input)
         {
 
             if (!ModelState.IsValid)
@@ -32,8 +34,9 @@ namespace ClinicApp.Controllers
                 return View();
             }
 
-            input.Id = Data.Doctors.Max(d => d.Id) + 1;
-            Data.Doctors.Add(input);
+            var doc = input.ToModel();
+            doc.Id = Data.Doctors.Max(d => d.Id) + 1;
+            Data.Doctors.Add(doc);
             return RedirectToAction(nameof(Index));
         }
 
