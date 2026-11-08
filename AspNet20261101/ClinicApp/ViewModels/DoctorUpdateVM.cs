@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using ClinicApp.Helpers;
 using ClinicApp.Models;
 
 namespace ClinicApp.ViewModels;
@@ -14,6 +15,7 @@ public class DoctorUpdateVM
     public double Salary { get; set; }
 
     [Display(Name = "Hire Date")]
+    [NotFutureDate(ErrorMessage = "Can't be a future date")]
     public DateTime HireDate { get; set; }
 
 
