@@ -1,13 +1,45 @@
-﻿@model List<DoctorReadVM>
+﻿@model DoctorFilteredListVM
 
 @{
     ViewData["Title"] = "Doctors";
 }
 
 <div class="d-flex justify-content-between mb-3">
-    <h3>Doctors @Model.Count</h3>
+    <h3>Doctors @Model.Doctors.Count</h3>
     <a class="btn btn-primary" asp-action="Create">Create New</a>
 </div>
+
+<form>
+    <div class="row">
+        <div class="col">
+            <div class="form-floating mb-3">
+                <input class="form-control" asp-for="Query.Name">
+                <label asp-for="Query.Name"></label>
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-floating mb-3">
+                <input class="form-control" asp-for="Query.Id">
+                <label asp-for="Query.Id"></label>
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-floating mb-3">
+                <input type="date" class="form-control" asp-for="Query.HireDateStart">
+                <label asp-for="Query.HireDateStart"></label>
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-floating mb-3">
+                <input type="date" class="form-control" asp-for="Query.HireDateEnd">
+                <label asp-for="Query.HireDateEnd"></label>
+            </div>
+        </div>
+        <div class="col">
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+    </div>
+</form>
 
 <table class="table table-bordered">
     <tr>
@@ -16,7 +48,7 @@
         <th>Hire Date</th>
         <th></th>
     </tr>
-    @foreach (var d in Model)
+    @foreach (var d in Model.Doctors)
     {
         <tr>
             <td>@d.Id</td>

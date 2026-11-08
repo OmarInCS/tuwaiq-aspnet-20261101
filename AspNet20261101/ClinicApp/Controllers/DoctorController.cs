@@ -15,10 +15,20 @@ namespace ClinicApp.Controllers
 
 
         // GET: DoctorController
-        public ActionResult Index()
+        public ActionResult Index(DoctorFilteredListVM data)
         {
-            var doctors = _db.Doctors.Select(d => d.ToReadVM()).ToList();
-            return View(doctors);
+            var query = data.Query;
+
+            var doctors = _db.Doctors
+                            .Where(d => query.Name == null || d.Name.Contains(query.Name))
+                            .Where(d => query.Id == null || d.Id == query.Id)
+                            .Where(d => query.HireDateStart == null || d.HireDate >= query.HireDateStart)
+                            .Where(d => query.HireDateEnd == null || d.HireDate <= query.HireDateEnd)
+                            .Select(d => d.ToReadVM())
+                            .ToList();
+
+            var vm = new DoctorFilteredListVM { Doctors = doctors };
+            return View(vm);
         }
 
         public ActionResult Details(int id)
