@@ -15,9 +15,8 @@ namespace ClinicApp.Controllers
 
 
         // GET: DoctorController
-        public ActionResult Index(DoctorFilteredListVM data)
+        public ActionResult Index(DoctorQueryVM query)
         {
-            var query = data.Query;
 
             var doctors = _db.Doctors
                             .Where(d => query.Name == null || d.Name.Contains(query.Name))
