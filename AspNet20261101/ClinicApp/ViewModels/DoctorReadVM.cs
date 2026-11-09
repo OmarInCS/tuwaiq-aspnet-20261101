@@ -15,6 +15,8 @@ public class DoctorReadVM
 
     public DateTime HireDate { get; set; }
 
+    public string? SpecialityName { get; set; }
+
     public int YearsInService => (int) ((DateTime.Now - HireDate).TotalDays / 365);
 
     public string FormattedHireDate => HireDate.ToString("dd-MMM-yyyy");

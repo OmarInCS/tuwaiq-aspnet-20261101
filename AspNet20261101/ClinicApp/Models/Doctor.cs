@@ -33,7 +33,8 @@ public class Doctor
             Id = Id,
             Name = Name,
             Salary = Salary,
-            HireDate = HireDate
+            HireDate = HireDate,
+            SpecialityName = Speciality?.Name
         };
     }
 

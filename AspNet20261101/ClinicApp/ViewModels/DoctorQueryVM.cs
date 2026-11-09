@@ -25,4 +25,8 @@ public class DoctorQueryVM
     public int TotalPages => (int) Math.Ceiling((double) TotalRows / PageSize);
 
     public int PreviousRows => (Page - 1) * PageSize;
+
+    public int PreviousPage => Math.Max(1, Page - 1);
+
+    public int NexPage => Math.Min(TotalPages, Page + 1);
 }

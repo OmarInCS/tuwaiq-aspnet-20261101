@@ -1,6 +1,7 @@
 using ClinicApp.Models;
 using ClinicApp.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace ClinicApp.Controllers
 {
@@ -38,7 +39,10 @@ namespace ClinicApp.Controllers
 
         public ActionResult Details(int id)
         {
-            var doc = _db.Doctors.Single(d => d.Id == id).ToReadVM();
+            var doc = _db.Doctors
+                        .Include(d => d.Speciality)
+                        .Single(d => d.Id == id)
+                        .ToReadVM();
             return View(doc);
         }
 
