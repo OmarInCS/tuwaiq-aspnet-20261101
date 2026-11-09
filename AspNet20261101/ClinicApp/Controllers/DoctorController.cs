@@ -18,15 +18,21 @@ namespace ClinicApp.Controllers
         public ActionResult Index(DoctorQueryVM query)
         {
 
-            var doctors = _db.Doctors
+            var initQuery = _db.Doctors
                             .Where(d => query.Name == null || d.Name.Contains(query.Name))
                             .Where(d => query.Id == null || d.Id == query.Id)
                             .Where(d => query.HireDateStart == null || d.HireDate >= query.HireDateStart)
-                            .Where(d => query.HireDateEnd == null || d.HireDate <= query.HireDateEnd)
+                            .Where(d => query.HireDateEnd == null || d.HireDate <= query.HireDateEnd);
+
+            query.TotalRows = initQuery.Count();
+
+            var doctors = initQuery
+                            .Skip(query.PreviousRows)
+                            .Take(query.PageSize)
                             .Select(d => d.ToReadVM())
                             .ToList();
 
-            var vm = new DoctorFilteredListVM { Doctors = doctors };
+            var vm = new DoctorFilteredListVM { Doctors = doctors, Query = query };
             return View(vm);
         }
 

@@ -1,7 +1,7 @@
 ﻿@model DoctorQueryVM
 
 
-<form>
+<form id="doctor-serach-form">
     <div class="row">
         <div class="col">
             <div class="form-floating mb-3">
@@ -27,6 +27,9 @@
                 <label asp-for="HireDateEnd"></label>
             </div>
         </div>
+
+        <input asp-for="Page" class="visually-hidden" />
+
         <div class="col">
             <button type="submit" class="btn btn-primary">Search</button>
         </div>

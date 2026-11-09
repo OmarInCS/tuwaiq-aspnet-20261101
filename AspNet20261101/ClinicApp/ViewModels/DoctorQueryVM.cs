@@ -14,4 +14,15 @@ public class DoctorQueryVM
 
     [Display(Name = "Hire Date End")]
     public DateTime? HireDateEnd { get; set; }
+
+
+    public int Page { get; set; } = 1;
+
+    public int PageSize { get; set; } = 3;
+
+    public int TotalRows { get; set; }
+
+    public int TotalPages => (int) Math.Ceiling((double) TotalRows / PageSize);
+
+    public int PreviousRows => (Page - 1) * PageSize;
 }

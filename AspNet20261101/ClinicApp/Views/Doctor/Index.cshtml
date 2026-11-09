@@ -5,7 +5,7 @@
 }
 
 <div class="d-flex justify-content-between mb-3">
-    <h3>Doctors @Model.Doctors.Count</h3>
+    <h3>Doctors @Model.Query.TotalRows</h3>
     <a class="btn btn-primary" asp-action="Create">Create New</a>
 </div>
 
@@ -42,6 +42,8 @@
     }
 </table>
 
+<partial name="_IndexPagination" model="@Model.Query" />
+
 @section Scripts {
     <script>
         $(".btn-js-delete").on("click", function() {
@@ -56,6 +58,12 @@
                     }
                 });
             }
+        });
+
+        $(".page-js-link").on("click", function() {
+            var pageNum = $(this).data("page");
+            $("#doctor-serach-form #Page").val(pageNum);
+            $("#doctor-serach-form").submit();
         });
     </script>
 }
