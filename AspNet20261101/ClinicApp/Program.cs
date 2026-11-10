@@ -45,4 +45,6 @@ app.MapControllerRoute(
     .WithStaticAssets();
 
 
+await AdminSeeder.SeedAdminUser(app);
+
 app.Run();
