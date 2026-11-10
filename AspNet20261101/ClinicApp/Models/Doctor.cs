@@ -44,7 +44,8 @@ public class Doctor
         {
             Name = Name,
             Salary = Salary,
-            HireDate = HireDate
+            HireDate = HireDate,
+            SpecialityId = SpecialityCode
         };
     }
 }
