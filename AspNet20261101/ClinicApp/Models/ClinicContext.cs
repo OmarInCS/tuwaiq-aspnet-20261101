@@ -1,9 +1,11 @@
 using System;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace ClinicApp.Models;
 
-public class ClinicContext : DbContext
+public class ClinicContext : IdentityDbContext
 {
 
     public DbSet<Doctor> Doctors { get; set; }
@@ -43,5 +45,13 @@ public class ClinicContext : DbContext
         //             .HasMany(d => d.Appointments)
         //             .WithOne(a => a.Doctor)
         //             .HasForeignKey(a => a.DoctorId);
+
+        modelBuilder.Entity<IdentityUser>().ToTable("Users");
+        modelBuilder.Entity<IdentityRole>().ToTable("Roles");
+        modelBuilder.Entity<IdentityUserRole<string>>().ToTable("UserRoles");
+        modelBuilder.Entity<IdentityUserClaim<string>>().ToTable("UserClaims");
+        modelBuilder.Entity<IdentityUserLogin<string>>().ToTable("UserLogins");
+        modelBuilder.Entity<IdentityUserToken<string>>().ToTable("UserTokens");
+        modelBuilder.Entity<IdentityRoleClaim<string>>().ToTable("RoleClaims");
     }
 }

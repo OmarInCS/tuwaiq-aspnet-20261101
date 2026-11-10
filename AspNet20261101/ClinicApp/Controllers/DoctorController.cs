@@ -1,11 +1,13 @@
 using ClinicApp.Helpers;
 using ClinicApp.Models;
 using ClinicApp.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace ClinicApp.Controllers
 {
+    [Authorize]
     public class DoctorController : Controller
     {
         private readonly ClinicContext _db;
