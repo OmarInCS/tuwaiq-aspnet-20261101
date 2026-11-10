@@ -22,6 +22,14 @@
         <label asp-for="HireDate"></label>
         <span class="text-danger" asp-validation-for="HireDate"></span>
     </div>
+    <div class="form-floating  mb-3">
+        <select asp-for="SpecialityId" class="form-select" 
+                asp-items='new SelectList(Model.AllSpecialities, "Id", "Name")'>
+            <option value=""></option>
+        </select>
+        <label asp-for="SpecialityId"></label>
+        <span class="text-danger" asp-validation-for="SpecialityId"></span>
+    </div>
     <button type="submit" class="btn btn-primary">Save</button>
 </form>
 

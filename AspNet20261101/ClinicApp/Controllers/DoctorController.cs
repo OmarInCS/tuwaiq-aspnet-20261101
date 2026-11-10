@@ -48,7 +48,9 @@ namespace ClinicApp.Controllers
 
         public ActionResult Create()
         {
-            return View();
+            var vm = new DoctorCreateVM();
+            vm.AllSpecialities = _db.Specialities.Select(s => s.ToReadVM()).ToList();
+            return View(vm);
         }
 
 
@@ -59,7 +61,9 @@ namespace ClinicApp.Controllers
 
             if (!ModelState.IsValid)
             {
-                return View();
+                var vm = new DoctorCreateVM();
+                vm.AllSpecialities = _db.Specialities.Select(s => s.ToReadVM()).ToList();
+                return View(vm);
             }
 
             var doc = input.ToModel();
@@ -81,6 +85,7 @@ namespace ClinicApp.Controllers
         public ActionResult Update(int id)
         {
             var doc = _db.Doctors.Single(d => d.Id == id).ToUpdateVM();
+            doc.AllSpecialities = _db.Specialities.Select(s => s.ToReadVM()).ToList();
             return View(doc);
         }
 
@@ -92,7 +97,9 @@ namespace ClinicApp.Controllers
 
             if (!ModelState.IsValid)
             {
-                return View();
+                var vm = _db.Doctors.Single(d => d.Id == id).ToUpdateVM();
+                vm.AllSpecialities = _db.Specialities.Select(s => s.ToReadVM()).ToList();
+                return View(vm);
             }
 
 

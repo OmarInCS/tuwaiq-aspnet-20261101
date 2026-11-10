@@ -18,11 +18,17 @@ public class DoctorUpdateVM
     [NotFutureDate(ErrorMessage = "Can't be a future date")]
     public DateTime HireDate { get; set; }
 
+    [Display(Name = "Speciality")]
+    public int? SpecialityId { get; set; }
+
+    public List<SpecialityReadVM> AllSpecialities { get; set; } = new();
+
 
     public void ToModel(Doctor doc)
     {
         doc.Name = Name;
         doc.Salary = Salary;
         doc.HireDate = HireDate;
+        doc.SpecialityCode = SpecialityId;
     }
 }
