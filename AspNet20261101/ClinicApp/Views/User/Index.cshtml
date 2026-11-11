@@ -1,9 +1,12 @@
-﻿
+﻿@using ClinicApp.Helpers
+
 @{
     ViewData["Title"] = "Users";
 }
 
 <div class="d-flex justify-content-between mb-3">
     <h3>Users</h3>
-    <a class="btn btn-primary" asp-action="Create">Create New</a>
+    @if(User.IsInRole(AppRoles.APP_ADMIN.ToString())) {
+        <a class="btn btn-primary" asp-action="Create">Create New</a>
+    }
 </div>

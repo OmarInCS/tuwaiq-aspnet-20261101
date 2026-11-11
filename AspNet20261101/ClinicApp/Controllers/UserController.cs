@@ -1,4 +1,5 @@
 using ClinicApp.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,6 +22,7 @@ namespace ClinicApp.Controllers
             return View();
         }
 
+        [Authorize(Roles = "APP_ADMIN")]
         public ActionResult Create()
         {
             return View();
@@ -29,6 +31,7 @@ namespace ClinicApp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "APP_ADMIN")]
         public async Task<ActionResult> Create(UserCreateVM vm)
         {
             if (!ModelState.IsValid)
@@ -47,6 +50,13 @@ namespace ClinicApp.Controllers
             if (!result.Succeeded)
             {
                 ModelState.AddModelError("Email", "Failed to create user, maybe email already exists");
+                return View(vm);
+            }
+
+            result = await _userManager.AddToRoleAsync(user, vm.Role.ToString());
+            if (!result.Succeeded)
+            {
+                ModelState.AddModelError("Email", "Failed add role to the user");
                 return View(vm);
             }
 

@@ -50,6 +50,8 @@ namespace ClinicApp.Controllers
             return View(doc);
         }
 
+
+        [Authorize(Roles = "APP_ADMIN")]
         public ActionResult Create()
         {
             var vm = new DoctorCreateVM();
@@ -60,6 +62,7 @@ namespace ClinicApp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "APP_ADMIN")]
         public ActionResult Create(DoctorCreateVM input)
         {
 
@@ -77,6 +80,7 @@ namespace ClinicApp.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [Authorize(Roles = "APP_ADMIN")]
         public ActionResult Delete(int id)
         {
             var doc = _db.Doctors.Single(d => d.Id == id);
@@ -86,6 +90,7 @@ namespace ClinicApp.Controllers
             return NoContent();
         }
 
+        [Authorize(Roles = "APP_ADMIN")]
         public ActionResult Update(int id)
         {
             var doc = _db.Doctors.Single(d => d.Id == id).ToUpdateVM();
@@ -96,6 +101,7 @@ namespace ClinicApp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "APP_ADMIN")]
         public ActionResult Update(int id, DoctorUpdateVM input)
         {
 

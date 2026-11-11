@@ -49,5 +49,11 @@ namespace ClinicApp.Controllers
 
             return Redirect(returnUrl);
         }
+
+        public async Task<ActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return Redirect("/");
+        }
     }
 }

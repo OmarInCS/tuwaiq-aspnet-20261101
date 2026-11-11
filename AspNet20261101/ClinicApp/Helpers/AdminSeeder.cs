@@ -29,6 +29,12 @@ public class AdminSeeder
         {
             throw new Exception("Admin can't be created");
         }
+
+        result = await userManager.AddToRoleAsync(admin, AppRoles.APP_ADMIN.ToString());
+        if (!result.Succeeded)
+        {
+            throw new Exception("Admin can't be created");
+        }
         
         System.Console.WriteLine("Admin user created!!");
     } 

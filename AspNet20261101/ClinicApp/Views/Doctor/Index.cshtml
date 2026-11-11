@@ -1,4 +1,5 @@
-﻿@model DoctorFilteredListVM
+﻿@using ClinicApp.Helpers
+@model DoctorFilteredListVM
 
 @{
     ViewData["Title"] = "Doctors";
@@ -6,7 +7,9 @@
 
 <div class="d-flex justify-content-between mb-3">
     <h3>Doctors @Model.Query.TotalRows</h3>
-    <a class="btn btn-primary" asp-action="Create">Create New</a>
+    @if(User.IsInRole(AppRoles.APP_ADMIN.ToString())) {
+        <a class="btn btn-primary" asp-action="Create">Create New</a>
+    }
 </div>
 
 <partial name="_IndexSearch" model="@Model.Query" />
@@ -31,12 +34,14 @@
                 @d.FormattedHireDate
             </td>
             <td>
-                <a class="btn btn-sm btn-secondary" asp-action="Update" asp-route-id="@d.Id">
-                    Update
-                </a>
-                <a class="btn btn-sm btn-danger btn-js-delete" data-id="@d.Id">
-                    Delete
-                </a>
+                @if(User.IsInRole(AppRoles.APP_ADMIN.ToString())) {
+                    <a class="btn btn-sm btn-secondary" asp-action="Update" asp-route-id="@d.Id">
+                        Update
+                    </a>
+                    <a class="btn btn-sm btn-danger btn-js-delete" data-id="@d.Id">
+                        Delete
+                    </a>
+                }
             </td>
         </tr>
     }
