@@ -125,6 +125,29 @@ namespace ClinicApp.Migrations
                         .HasDatabaseName("RoleNameIndex");
 
                     b.ToTable("Roles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "bea4cc39-d94b-446d-adf2-5ecf23960a0a",
+                            ConcurrencyStamp = "bea4cc39-d94b-446d-adf2-5ecf23960a0a",
+                            Name = "APP_ADMIN",
+                            NormalizedName = "APP_ADMIN"
+                        },
+                        new
+                        {
+                            Id = "bea4cc39-d94b-446d-adf2-5ecf23960a1a",
+                            ConcurrencyStamp = "bea4cc39-d94b-446d-adf2-5ecf23960a1a",
+                            Name = "DOCTOR",
+                            NormalizedName = "DOCTOR"
+                        },
+                        new
+                        {
+                            Id = "bea4cc39-d94b-446d-adf2-5ecf23960a2a",
+                            ConcurrencyStamp = "bea4cc39-d94b-446d-adf2-5ecf23960a2a",
+                            Name = "FRONT_OFFICE",
+                            NormalizedName = "FRONT_OFFICE"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

@@ -1,4 +1,5 @@
 using System;
+using ClinicApp.Helpers;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -53,5 +54,27 @@ public class ClinicContext : IdentityDbContext
         modelBuilder.Entity<IdentityUserLogin<string>>().ToTable("UserLogins");
         modelBuilder.Entity<IdentityUserToken<string>>().ToTable("UserTokens");
         modelBuilder.Entity<IdentityRoleClaim<string>>().ToTable("RoleClaims");
+
+        modelBuilder.Entity<IdentityRole>()
+                    .HasData([
+                       new IdentityRole {
+                           Id = "bea4cc39-d94b-446d-adf2-5ecf23960a0a",
+                           Name = AppRoles.APP_ADMIN.ToString(),
+                           NormalizedName = AppRoles.APP_ADMIN.ToString(),
+                           ConcurrencyStamp = "bea4cc39-d94b-446d-adf2-5ecf23960a0a"
+                       } ,
+                       new IdentityRole {
+                           Id = "bea4cc39-d94b-446d-adf2-5ecf23960a1a",
+                           Name = AppRoles.DOCTOR.ToString(),
+                           NormalizedName = AppRoles.DOCTOR.ToString(),
+                           ConcurrencyStamp = "bea4cc39-d94b-446d-adf2-5ecf23960a1a"
+                       } ,
+                       new IdentityRole {
+                           Id = "bea4cc39-d94b-446d-adf2-5ecf23960a2a",
+                           Name = AppRoles.FRONT_OFFICE.ToString(),
+                           NormalizedName = AppRoles.FRONT_OFFICE.ToString(),
+                           ConcurrencyStamp = "bea4cc39-d94b-446d-adf2-5ecf23960a2a"
+                       } ,
+                    ]);
     }
 }
