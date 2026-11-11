@@ -13,6 +13,11 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>()
                 .AddEntityFrameworkStores<ClinicContext>()
                 .AddDefaultTokenProviders();
 
+builder.Services.ConfigureApplicationCookie(options =>
+{
+   options.LoginPath = "/Auth/Login";
+});
+
 
 builder.Services.AddScoped<DoctorService>();
 builder.Services.AddTransient<OtherService>();
